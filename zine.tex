@@ -1,5 +1,5 @@
-\documentclass[a5paper, 10pt]{book}
-% \documentclass[twoside, a5paper, 10pt]{article}
+\documentclass[twoside, a5paper, 9pt, openright]{memoir}
+% \documentclass[a5paper, 8pt]{book}
 % \usepackage[margin=1.5cm, footskip=-1cm]{geometry}
 % \setmainfont{SourceSansPro}[%
 % %    Path= /usr/local/texlive/2014/texmf-dist/fonts/opentype/adobe/sourcesanspro/ ,
@@ -12,21 +12,23 @@
     a5paper,
 %   includeheadfoot,
     head=\baselineskip,  % distance from bottom of header to block of text aka \headsep e.g. \baselineskip
-    foot=2.3cm,  % distance from top of footer to block of text aka \footskip
+    foot=1cm,  % distance from top of footer to block of text aka \footskip
     headheight=12pt,     % height for the header block (no equivalent for footer)
 %   heightrounded,       % ensure an integer number of lines
     marginparwidth=2cm,  % right marginal note width
     marginparsep=2mm,    % distance from text block to marginal note box
 %   height=\textheight,  % height of the text block
 %   width=\textwidth,    % width of the text block
-    top=2.5cm,           % distance of the text block from the top of the page
-    bottom=3cm,
-    left=2.5cm,
-    right=2.5cm,
+    top=2.0cm,           % distance of the text block from the top of the page
+    bottom=1.5cm,
+    left=1.5cm,
+    right=1.5cm,
 %    showframe,           % show the main blocks
 %    verbose,             % show the values of the parameters in the log file
 ]{geometry}
 \usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{blindtext}
 \usepackage{tikz}
 \usetikzlibrary{calc, trees, positioning,arrows.meta, chains, shapes.geometric, decorations.pathreplacing, decorations.pathmorphing, shapes, matrix, shapes.symbols}
 \tikzset{>={Latex[width=2mm, length=1.2mm]}}
@@ -46,7 +48,7 @@
 % 	{\vspace{2ex}}[\vspace{1ex}]
 \titleformat{name=\chapter,numberless}[display]
 	{\normalfont\frakfamily\Large\bfseries}{}{0em}
-	{\Huge}
+	{\Large}
 \titleformat{\section}
     {\normalfont\frakfamily\Large\bfseries}{}{0em}{}
 \titleformat{\subsection}
@@ -72,19 +74,20 @@
 }%
 \fancypagestyle{mainmatter}{%
 	\fancyhf{} % clear all fields
-	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\headrulewidth}{0.3pt}
+	\renewcommand{\footrulewidth}{0.0pt}
 	% \fancyhead[LE,RO]{\leftmark}
 	\fancyhead[LE,RO]{\leftmark}
-	\fancyhead[LO,RE]{MÖRKAZINE}
+	\fancyhead[LO,RE]{MÖRK:AZINE}
 	\fancyfoot[LE,RO]{\thepage}
 }%
 
 \fancypagestyle{IHA-fancy-style}{%
 \fancyhf{}% Clear header and footer
-\renewcommand{\headrulewidth}{0.4pt}% Line at the header visible
-\renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+\renewcommand{\headrulewidth}{0.3pt}% Line at the header visible
+\renewcommand{\footrulewidth}{0.0pt}
 \fancyhead[LE,RO]{\rightmark}
-\fancyhead[LO,RE]{MÖRKAZINE}
+\fancyhead[LO,RE]{MÖRK:AZINE}
 \fancyfoot[LE,RO]{\thepage}% Custom footer
 }
 % \pagestyle{IHA-fancy-style}
@@ -92,27 +95,27 @@
 % Redefine the plain page style
 \fancypagestyle{plain}{%
 \renewcommand{\headrulewidth}{0.0pt}% Line at the header invisible
-\renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+\renewcommand{\footrulewidth}{0.0pt}
 	\fancyhf{}%
 	\fancyfoot[C]{\thepage}%
 }
 
-\newcommand{\DTwo}[2]{\colorbox{purple}{\textbf{#1[d2]#2}}}
-\newcommand{\DFour}[2]{\colorbox{orange}{\textbf{#1[d4]#2}}}
-\newcommand{\DSix}[2]{\colorbox{green}{\textbf{#1[d6]#2}}}
-\newcommand{\DEight}[2]{\colorbox{magenta}{\textbf{#1[d8]#2}}}
-\newcommand{\DTen}[2]{\colorbox{cyan}{\textbf{#1[d10]#2}}}
-\newcommand{\DTwelve}[2]{\colorbox{yellow}{\textbf{#1[d12]#2}}}
-\newcommand{\DTwenty}[2]{\colorbox{lightgray}{\textbf{#1[d20]#2}}}
-\newcommand{\DOneHundret}[2]{\colorbox{cyan}{\textbf{#1[d100]#2}}}
+\newcommand{\DTwo}[2]{\colorbox{purple}{\textbf{#1(d2)#2}}}
+\newcommand{\DFour}[2]{\colorbox{orange}{\textbf{#1(d4)#2}}}
+\newcommand{\DSix}[2]{\colorbox{green}{\textbf{#1(d6)#2}}}
+\newcommand{\DEight}[2]{\colorbox{magenta}{\textbf{#1(d8)#2}}}
+\newcommand{\DTen}[2]{\colorbox{cyan}{\textbf{#1(d10)#2}}}
+\newcommand{\DTwelve}[2]{\colorbox{yellow}{\textbf{#1(d12)#2}}}
+\newcommand{\DTwenty}[2]{\colorbox{lightgray}{\textbf{#1(d20)#2}}}
+\newcommand{\DOneHundret}[2]{\colorbox{cyan}{\textbf{#1(d100)#2}}}
 
 
 
 % Edit inside the { brackets } to change these.
 
-\title{BORGaZine}
-\author{Max Funke}
-\date{\today}
+\title{MÖRK:AZINE}
+\author{Fax Mumpe}
+\date{April 2025}
 
 \begin{document}
 \pagestyle{frontmatter}
@@ -153,34 +156,88 @@ A table:
 
 \begin{figure}[hbt]
 	\centering
-	\tikzstyle{block} = [rectangle, draw, text width=10em, text centered, rounded corners, minimum height=2em]    \fbox{%
-		\begin{tikzpicture}
-			[node distance=1.35cm,
-				start chain=going below,]
-			\node (n1) at (0,0) [block]  {General framwork};
-			\node (n2) [block, below of=n1] {Literature study};
-			\node (n3) [block, below of=n2] {Data-analysis};
-			\node (n4) [block, below of=n3] {Model set-up (SB \& NH)};
-			\node (n5) [block, below of=n4] {Simulations};
-			\node (n6) [block, below of=n5] {Sensitivity analysis};
-			\node (n7) [block, below of=n6] {Model update};
-			\node (n8) [block, below of=n7] {Conclusions and recommendations};
-			% Connectors
-			\draw [->] (n1) -- (n2);
-			\draw [->] (n2) -- (n3);
-			\draw [->] (n3) -- (n4);
-			\draw [->] (n4) -- (n5);
-			\draw [->] (n5) -- (n6);
-			\draw [->] (n6) -- (n7);
-			\draw [->] (n6) -- (n7);
-			\draw [->] (n7) -- (n8);
-			\draw [->] (n7.east) -| ++(1,0) |- (n6.east);
-			\draw [->] (n7.west) -| ++(-1,0) |- (n5.west);
-		\end{tikzpicture}
-	}
+	\tikzstyle{block} = [draw, text width=10em, text centered, minimum height=2em]
+	\begin{tikzpicture}
+		[node distance=1.35cm,
+			start chain=going below,]
+		\node (n1) at (0,0) [block]  {General framwork};
+		\node (n2) [block, below of=n1] {Literature study};
+		\node (n3) [block, below of=n2] {Data-analysis};
+		\node (n4) [block, below of=n3] {Model set-up (SB \& NH)};
+		\node (n5) [block, below of=n4] {Simulations};
+		\node (n6) [block, below of=n5] {Sensitivity analysis};
+		\node (n7) [block, below of=n6] {Model update};
+		\node (n8) [block, below of=n7] {Conclusions and recommendations};
+		% Connectors
+		\draw [->] (n1) -- (n2);
+		\draw [->] (n2) -- (n3);
+		\draw [->] (n3) -- (n4);
+		\draw [->] (n4) -- (n5);
+		\draw [->] (n5) -- (n6);
+		\draw [->] (n6) -- (n7);
+		\draw [->] (n6) -- (n7);
+		\draw [->] (n7) -- (n8);
+		\draw [->] (n7.east) -| ++(1,0) |- (n6.east);
+		\draw [->] (n7.west) -| ++(-1,0) |- (n5.west);
+	\end{tikzpicture}
+	
 	\caption{Some title}
 	\label{fig:title}
 \end{figure}
+
+\chapter{Roads to Damnation}
+TRAVEL ACROSS THE DYING WORLD\\
+Text Svante Landgraf Proofreading Esh
+\onecolumn
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{0.4pt}
+\begin{multicols}{2}
+	\section*{Travel checklist}
+	\begin{itemize}
+		\item Keep track of food and water.
+		\item Remember to roll for \textbf{The Calendar of Nechrubel} daily.
+		\item Roll for \textbf{weather}, rerolling if it becomes samey or travel events dictate.
+		\item \textbf{Information within parentheses} are things which are not clear at first glance.
+	\end{itemize}
+
+	\section*{what's the road like? \DEight{}{}}
+	\begin{enumerate}
+		\item[1] Almost-forgotten \textbf{dirt track}.
+		\item[2] asdf.
+		\item[3] brown
+		\item[4-5] dingens
+		\item[6-7] red
+		\item[8] green
+	\end{enumerate}
+\end{multicols}
+\hrule
+\hfill \break
+\hfill \break
+\hfill \break
+\begin{multicols}{2}
+	\section{Events by the road. \DTwenty{Roll daily}{:}}
+	\begin{enumerate}
+		\item[1-3] Almost-forgotten \textbf{dirt track}.
+		\item[4] asdf.
+		\item[5-6] brown
+		\item[7-8] dingens
+		\item[9] red
+		\item[10] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[11] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[12] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[13] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[14] \DSix{}{+1 slavers,} leading \DSix{2}{ slaves}, half beaten to death, half freshly caught.
+		\item[15] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[16] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[17] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[18] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[19] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+		\item[20] A few mercenaries and their \DEight{}{ guard}. (All infected by a brain parasite.)
+	\end{enumerate}
+\end{multicols}
+\clearpage
+
+\blindtext[2]
 
 % Back cover
 
